@@ -14,12 +14,17 @@ public class Player : MonoBehaviour
     private bool enableJump = false;
     public float jumpForce;
 
-    public float rotation1;
+    private float rotationX = 0f; //-90 ~ 90
+
+    public bool hideCursor = true;
     
     void Start()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        if (hideCursor)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
         rigid = GetComponent<Rigidbody>();
     }
@@ -49,11 +54,22 @@ public class Player : MonoBehaviour
         moveVector.Normalize();
         transform.Translate(moveVector * (moveSpeed * Time.deltaTime));
         
-        //rotate
-        transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * rotateXSpeed);
-        //headPivot.Rotate(Vector3.right, -Input.GetAxis("Mouse Y") * rotateYSpeed);
         
-        //headPivot.rotation = Quaternion.Euler(temp);
+        
+        
+        
+        //rotate
+        //좌우 회전
+        transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * rotateXSpeed);
+        //상하 회전
+        rotationX -= Input.GetAxis("Mouse Y") * rotateYSpeed;
+        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
+        
+        var tempRotation = headPivot.eulerAngles;
+        tempRotation.x = rotationX;
+        headPivot.rotation = Quaternion.Euler(tempRotation);
+        
+        
         
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && enableJump)
