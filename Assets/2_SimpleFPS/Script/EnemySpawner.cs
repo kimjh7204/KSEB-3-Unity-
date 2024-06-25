@@ -29,7 +29,8 @@ public class EnemySpawner : MonoBehaviour
             var posX = Random.Range(-SpawnRange, SpawnRange);
             var posY = Random.Range(-SpawnRange, SpawnRange);
             
-            Instantiate(enemy, new Vector3(posX, 0f, posY), Quaternion.identity);
+            var tempEnemy = Instantiate(enemy, new Vector3(posX, 0f, posY), Quaternion.identity).GetComponent<Enemy>();
+            tempEnemy.Init(Random.Range(70f, 130f));
         }
     }
 }
