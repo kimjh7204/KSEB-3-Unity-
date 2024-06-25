@@ -17,6 +17,12 @@ public class Player : MonoBehaviour
     private float rotationX = 0f; //-90 ~ 90
 
     public bool hideCursor = true;
+
+    public GameObject bullet;
+    public Transform muzzle;
+
+    public float dmg;
+    public float bulletSpeed;
     
     void Start()
     {
@@ -56,8 +62,6 @@ public class Player : MonoBehaviour
         
         
         
-        
-        
         //rotate
         //좌우 회전
         transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * rotateXSpeed);
@@ -69,13 +73,19 @@ public class Player : MonoBehaviour
         tempRotation.x = rotationX;
         headPivot.rotation = Quaternion.Euler(tempRotation);
         
-        
-        
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && enableJump)
         {
             rigid.AddForce(0f, jumpForce, 0f, ForceMode.Impulse);
             enableJump = false;
+        }
+
+        //fire bullet
+        if (Input.GetMouseButtonDown(0))
+        {
+            //bullet 생성
+            var tempBullet = Instantiate(bullet, muzzle.position, headPivot.rotation);
+            tempBullet.GetComponent<Bullet>().Init(bulletSpeed, dmg);
         }
     }
 
