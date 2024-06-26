@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     
     public float dmg;
     public float bulletSpeed;
+
+    public ParticleSystem muzzleFlash;
     
     void Start()
     {
@@ -90,6 +92,8 @@ public class Player : MonoBehaviour
         //fire bullet
         if (Input.GetMouseButtonDown(0))
         {
+            muzzleFlash.Play();
+            
             //bullet 생성
             var tempBullet = Instantiate(bullet, muzzle.position, headPivot.rotation);
             tempBullet.GetComponent<Bullet>().Init(bulletSpeed, dmg);

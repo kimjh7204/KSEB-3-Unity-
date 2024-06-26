@@ -12,6 +12,8 @@ public class Bullet : MonoBehaviour
 
     private float timeCounter = 0f;
     private const float MaxTime = 5f;
+
+    public GameObject hitEffect;
     
     public void Init(float speed, float dmg)
     {
@@ -50,6 +52,9 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.layer == 7)
         {
             other.GetComponent<Enemy>().GetDamage(bulletDamage);
+            
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+            
             Destroy(gameObject);
         }
     }
