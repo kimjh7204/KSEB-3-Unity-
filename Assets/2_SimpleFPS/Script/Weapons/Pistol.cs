@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Pistol : Weapon
 {
+    public float bulletSpeed;
     public GameObject bullet;
-
+    
     protected override void Fire()
     {
         muzzleFlash.Play();
@@ -13,5 +14,10 @@ public class Pistol : Weapon
         //bullet 생성
         var tempBullet = Instantiate(bullet, muzzle.position, transform.rotation);
         tempBullet.GetComponent<Bullet>().Init(bulletSpeed, dmg);
+    }
+
+    protected override void OnRelease()
+    {
+        
     }
 }

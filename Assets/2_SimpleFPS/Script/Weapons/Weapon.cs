@@ -5,18 +5,26 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public float dmg;
-    public float bulletSpeed;
     
     public ParticleSystem muzzleFlash;
 
     protected Transform muzzle;
+
+    public bool isFullAuto;
     
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (isFullAuto && Input.GetMouseButton(0))
         {
             Fire();
         }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            Fire();
+        }
+        
+        if(isFullAuto && Input.GetMouseButtonUp(0))
+            OnRelease();
     }
 
     public void Init(Transform muzzlePos)
@@ -24,4 +32,5 @@ public abstract class Weapon : MonoBehaviour
         muzzle = muzzlePos;
     }
     protected abstract void Fire();
+    protected abstract void OnRelease();
 }
