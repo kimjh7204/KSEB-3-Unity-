@@ -212,7 +212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1208213973}
+  m_Father: {fileID: 364226452}
   m_LocalEulerAnglesHint: {x: 58.543, y: 0, z: 0}
 --- !u!1 &305199057
 GameObject:
@@ -320,6 +320,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &364226451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364226452}
+  m_Layer: 0
+  m_Name: Cam pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &364226452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364226451}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08, y: 0, z: 0.21}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 292155534}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &638255758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,10 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 670c01a60e62b9e4c8b1c06642c0ee45, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2686890238580842728, guid: 7856c197eb4c77840878eba92e1c48b7, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 292155534}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2686890238580948232, guid: 7856c197eb4c77840878eba92e1c48b7, type: 3}
       insertIndex: -1
@@ -489,11 +518,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2686890238580948232, guid: 7856c197eb4c77840878eba92e1c48b7, type: 3}
   m_PrefabInstance: {fileID: 638255758}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1208213973 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2686890238580842728, guid: 7856c197eb4c77840878eba92e1c48b7, type: 3}
-  m_PrefabInstance: {fileID: 638255758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1208213974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09287a8dfc7048844b9f307a98485cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camPivot: {fileID: 364226452}
+  moveSpeed: 3
 --- !u!114 &1208213975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,3 +585,4 @@ SceneRoots:
   - {fileID: 779658794}
   - {fileID: 305199061}
   - {fileID: 638255758}
+  - {fileID: 364226452}

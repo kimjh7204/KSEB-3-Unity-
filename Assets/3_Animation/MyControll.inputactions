@@ -7,25 +7,69 @@
             "actions": [
                 {
                     "name": "Walk forward",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "a834540c-805a-4cb0-8e5a-b19f3345a9a5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "1a3948db-0ab9-47c7-972b-a94ca553a8a7",
+                    "name": "2D Vector",
+                    "id": "a1c58ab4-c02c-4a41-83c2-ce47fb3584dd",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk forward",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "08b5ea66-baf6-4a45-ad21-06bfb9485763",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Walk forward",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "b3e0b18a-5590-497f-921a-3bf544f8fe86",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "eb0a5bfc-8da5-4922-ac4d-7aba4bd9e5b8",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "9f898c76-c8db-494f-9385-97b0733fa20a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
