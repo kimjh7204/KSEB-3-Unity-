@@ -16,10 +16,7 @@ public class Player : MonoBehaviour
     public float jumpForce;
 
     private float rotationX = 0f; //-90 ~ 90
-
-    public bool hideCursor = true;
-
-    public GameObject bullet;
+    
     public Transform muzzle;
 
     private int healthPoint = MaxHealthPoint;
@@ -28,12 +25,11 @@ public class Player : MonoBehaviour
     public Image[] HeartImages;
 
     private bool invincible = false;
-    
-    public float dmg;
-    public float bulletSpeed;
 
-    public ParticleSystem muzzleFlash;
+    public Weapon[] Weapons;
+    private Weapon curWeapon;
     
+    public bool hideCursor = true;
     void Start()
     {
         if (hideCursor)
@@ -43,6 +39,12 @@ public class Player : MonoBehaviour
         }
 
         rigid = GetComponent<Rigidbody>();
+        
+        //시작 무기
+        Weapons[0].gameObject.SetActive(true);
+        Weapons[0].Init(muzzle);
+
+        curWeapon = Weapons[0];
     }
     
     void Update()
@@ -88,16 +90,13 @@ public class Player : MonoBehaviour
             rigid.AddForce(0f, jumpForce, 0f, ForceMode.Impulse);
             enableJump = false;
         }
-
-        //fire bullet
-        if (Input.GetMouseButtonDown(0))
-        {
-            muzzleFlash.Play();
-            
-            //bullet 생성
-            var tempBullet = Instantiate(bullet, muzzle.position, headPivot.rotation);
-            tempBullet.GetComponent<Bullet>().Init(bulletSpeed, dmg);
-        }
+        
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+            SelectWeapon(0);
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+            SelectWeapon(1);
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+            SelectWeapon(2);
     }
 
     private void GetDamage(Vector3 enemyPos)
@@ -129,6 +128,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void SelectWeapon(int idx)
+    {
+        curWeapon.gameObject.SetActive(false);
+        
+        Weapons[idx].gameObject.SetActive(true);
+        Weapons[idx].Init(muzzle);
+
+        curWeapon = Weapons[idx];
+    }
+    
     private IEnumerator InvincibleTimer()
     {
         yield return new WaitForSeconds(2f);

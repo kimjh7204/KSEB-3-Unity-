@@ -740,16 +740,14 @@ MonoBehaviour:
   rotateYSpeed: 5
   headPivot: {fileID: 500304024}
   jumpForce: 7
-  hideCursor: 1
-  bullet: {fileID: 7329948132570347492, guid: d170a4cde9dd7c945a0894a9adeb3433, type: 3}
   muzzle: {fileID: 2147368804}
   HeartImages:
   - {fileID: 1163547013}
   - {fileID: 548059791}
   - {fileID: 776944927}
-  dmg: 10
-  bulletSpeed: 50
-  muzzleFlash: {fileID: 8253549871542969796}
+  Weapons:
+  - {fileID: 1518435417}
+  hideCursor: 1
 --- !u!54 &656249132
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1328,13 +1326,14 @@ GameObject:
   - component: {fileID: 1518435416}
   - component: {fileID: 1518435415}
   - component: {fileID: 1518435414}
+  - component: {fileID: 1518435417}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1518435413
 Transform:
   m_ObjectHideFlags: 0
@@ -1422,6 +1421,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518435412}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1518435417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518435412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b5c6efbc9a82c4497d6609b4667b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 100
+  bulletSpeed: 5
+  muzzleFlash: {fileID: 8253549871542969796}
+  bullet: {fileID: 7329948132570347492, guid: d170a4cde9dd7c945a0894a9adeb3433, type: 3}
 --- !u!1 &1884555022
 GameObject:
   m_ObjectHideFlags: 0
