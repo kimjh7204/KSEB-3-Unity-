@@ -1,0 +1,34 @@
+{
+    "name": "MyControll",
+    "maps": [
+        {
+            "name": "CharacterMove",
+            "id": "0d3e129b-c3ab-48a0-add5-f77b67d6f5d0",
+            "actions": [
+                {
+                    "name": "Walk forward",
+                    "type": "Button",
+                    "id": "a834540c-805a-4cb0-8e5a-b19f3345a9a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a3948db-0ab9-47c7-972b-a94ca553a8a7",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk forward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
