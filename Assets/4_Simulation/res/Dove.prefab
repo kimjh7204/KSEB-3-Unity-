@@ -228,15 +228,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: df9fbdc0d5e9b424497f4540f7b5e5a8, type: 2}
     - target: {fileID: 7821054894090954687, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.8004613
       objectReference: {fileID: 0}
     - target: {fileID: 7821054894090954687, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 7821054894090954687, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 17.22536
       objectReference: {fileID: 0}
     - target: {fileID: 7821054894090954687, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
       propertyPath: m_LocalRotation.w
@@ -275,8 +275,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7821054894090954687, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7626470354149460436}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1266078942230249913, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9057464395369066022}
   m_SourcePrefab: {fileID: 100100000, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
+--- !u!1 &2204486107432004656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1266078942230249913, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}
+  m_PrefabInstance: {fileID: 1082531287085362569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9057464395369066022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204486107432004656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da9ae643fabd9446aa59c13a31c1e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleTime: 3
 --- !u!4 &7173138565946608182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7821054894090954687, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}

@@ -8,22 +8,12 @@ public class Dove : Blob
     private float idleTimer;
 
     private Vector3 WanderingPos;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     protected override void StateInit()
     {
         idleState = new FSMstate(IdleEnter, null, null);
+        wanderingState = new FSMstate(WanderingEnter, null, null);
+        curState = idleState;
     }
 
     protected override bool TransitionCheck()
@@ -34,7 +24,15 @@ public class Dove : Blob
 
             if (idleTimer > idleTime)
             {
-                //nextState = <- 세팅
+                nextState = wanderingState;
+                return true;
+            }
+        }
+        else if(curState == wanderingState)
+        {
+            if (Vector3.Distance(transform.position, WanderingPos) < 1.1f)
+            {
+                nextState = idleState;
                 return true;
             }
         }
@@ -57,6 +55,7 @@ public class Dove : Blob
         targetPos.z = Mathf.Clamp(targetPos.z, -mapSize, mapSize);
 
         WanderingPos = targetPos;
+        WanderingPos.y = 0f;
         
         agent.SetDestination(targetPos);
     }
