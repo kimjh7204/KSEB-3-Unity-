@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8492893561168793485}
   - component: {fileID: 7916084735739305531}
   - component: {fileID: 3341681354419711066}
+  - component: {fileID: 802126000215069388}
   m_Layer: 10
   m_Name: Food
   m_TagString: Untagged
@@ -105,3 +106,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &802126000215069388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735395118819218946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ac1627a38cbc1419bb0fb302160150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

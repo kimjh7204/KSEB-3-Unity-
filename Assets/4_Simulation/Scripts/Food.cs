@@ -5,7 +5,7 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     private int energy = 10;
-    private List<Blob> owner;
+    private List<Blob> owner = new ();
     private bool isHawk;
     private bool isDestroyed;
     
@@ -22,11 +22,6 @@ public class Food : MonoBehaviour
 
         if (energy < 0)
         {
-            foreach (var o in owner)
-            {
-                o.ResetFood();
-            }
-
             isDestroyed = true;
             Destroy(gameObject);
         }
