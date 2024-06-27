@@ -8,18 +8,17 @@ public abstract class Blob : MonoBehaviour
 {
     protected FSMstate idleState;
     protected FSMstate wanderingState;
-    //
-    //
-    
-    
+    protected FSMstate TracingFoodState;
+    protected FSMstate eatingState;
     
     protected FSMstate curState;
     protected FSMstate nextState;
     
     private bool isTransition;
-
-
+    
     protected NavMeshAgent agent;
+
+    protected Food targetFood;
     
     private void Awake()
     {
@@ -44,4 +43,9 @@ public abstract class Blob : MonoBehaviour
 
     protected abstract void StateInit();
     protected abstract bool TransitionCheck();
+
+    public void ResetFood()
+    {
+        targetFood = null;
+    }
 }
