@@ -1,20 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.PlayerLoop;
 
 public abstract class Blob : MonoBehaviour
 {
-    private FSMstate idle;
+    protected FSMstate idleState;
+    protected FSMstate wanderingState;
+    //
+    //
     
-    private FSMstate curState;
-    private FSMstate nextState;
+    
+    
+    protected FSMstate curState;
+    protected FSMstate nextState;
     
     private bool isTransition;
+
+
+    protected NavMeshAgent agent;
     
     private void Awake()
     {
         StateInit();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -22,14 +32,14 @@ public abstract class Blob : MonoBehaviour
         if (isTransition)
         {
             curState = nextState;
-            curState.OnEnter();
+            curState.OnEnter?.Invoke();
             isTransition = false;
         }
         
-        curState.OnUpdate();
+        curState.OnUpdate?.Invoke();
         isTransition = TransitionCheck();
 
-        if (isTransition) curState.OnExit();
+        if (isTransition) curState.OnExit?.Invoke();
     }
 
     protected abstract void StateInit();
