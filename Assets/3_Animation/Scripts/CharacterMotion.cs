@@ -13,9 +13,16 @@ public class CharacterMotion : MonoBehaviour
     public Transform camPivot;
 
     private Vector3 characterDir;
-
-    public float moveSpeed;
+    private Vector2 moveVector;
     
+    public float moveSpeed;
+
+    private bool isRunning = false;
+    
+    private static readonly int IsMoving = Animator.StringToHash("isMoving");
+    private static readonly int IsRun = Animator.StringToHash("isRun");
+    private static readonly int JumpTrigger = Animator.StringToHash("jump");
+
     void Start()
     {
         ani = GetComponent<Animator>();
@@ -24,26 +31,51 @@ public class CharacterMotion : MonoBehaviour
     private void Update()
     {
         camPivot.position = transform.position;
-        transform.Translate(characterDir * moveSpeed * Time.deltaTime);
+        
+        var threeDDir = new Vector3(moveVector.x, 0f, moveVector.y);
+        characterDir = Vector3.Slerp(characterDir, threeDDir, 0.5f);
+        
+        transform.Translate(characterDir * moveSpeed * Time.deltaTime, Space.World);
+        
+        transform.LookAt(transform.position + characterDir, Vector3.up);
+        
     }
 
     public void WalkForward(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            ani.SetBool("isWalking", true);
+            ani.SetBool(IsMoving, true);
+            moveVector = context.ReadValue<Vector2>();
         }
-
-        if (context.performed)
-        {
-            var dir = context.ReadValue<Vector2>();
-            var threeDDir = new Vector3(dir.x, 0f, dir.y);
-            characterDir = Vector3.Slerp(characterDir, threeDDir, 0.5f);
-        }
-
+        
         if (context.canceled)
         {
-            ani.SetBool("isWalking", false);
+            ani.SetBool(IsMoving, false);
+            moveVector = Vector2.zero;
+        }
+    }
+
+    public void RunPhase(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            ani.SetBool(IsRun, true);
+            isRunning = true;
+        }
+        
+        if (context.canceled)
+        {
+            ani.SetBool(IsRun, false);
+            isRunning = false;
+        }
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            ani.SetTrigger(JumpTrigger);
         }
     }
 }
