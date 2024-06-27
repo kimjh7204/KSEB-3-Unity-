@@ -23,6 +23,11 @@ public class CharacterMotion : MonoBehaviour
     private static readonly int IsRun = Animator.StringToHash("isRun");
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
 
+    private void Awake()
+    {
+        
+    }
+
     void Start()
     {
         ani = GetComponent<Animator>();
