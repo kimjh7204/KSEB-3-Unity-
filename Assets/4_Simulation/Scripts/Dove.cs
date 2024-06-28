@@ -8,7 +8,7 @@ public class Dove : Blob
     private float idleTimer;
 
     private float eatingTimer;
-    private float eatingRate = 1f;
+    private float eatingRate = 0.2f;
 
     private Vector3 WanderingPos;
 
@@ -76,24 +76,26 @@ public class Dove : Blob
 
     private bool CheckFoodInRange()
     {
-        var foods = Physics.OverlapSphere(transform.position, 5f, 1 << LayerMask.NameToLayer("Food"));
+        var foods = Physics.OverlapSphere(transform.position, 10f, 1 << LayerMask.NameToLayer("Food"));
 
         if (foods.Length < 1)
         {
             return false;
         }
             
-        var min = float.MaxValue;
-        for (int i = 0; i < foods.Length; i++)
-        {
-            var dist = Vector3.Distance(transform.position, foods[i].transform.position);
+        // var min = float.MaxValue;
+        // for (int i = 0; i < foods.Length; i++)
+        // {
+        //     var dist = Vector3.Distance(transform.position, foods[i].transform.position);
+        //
+        //     if (dist < min)
+        //     {
+        //         min = dist;
+        //         targetFood = foods[i].GetComponent<Food>();
+        //     }
+        // }
 
-            if (dist < min)
-            {
-                min = dist;
-                targetFood = foods[i].GetComponent<Food>();
-            }
-        }
+        targetFood = foods[Random.Range(0, foods.Length)].GetComponent<Food>();
 
         nextState = TracingFoodState;
         return true;
@@ -121,6 +123,8 @@ public class Dove : Blob
 
     private void TracingFoodEnter()
     {
+        if(targetFood.IsDestroyed()) return;
+        
         agent.SetDestination(targetFood.transform.position);
     }
 
@@ -135,7 +139,10 @@ public class Dove : Blob
 
         if (eatingTimer > eatingRate)
         {
+            if (targetFood.IsDestroyed()) return;
+            
             targetFood.TakeFood();
+            hp++;
             eatingTimer -= eatingRate;
         }
     }

@@ -297,7 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da9ae643fabd9446aa59c13a31c1e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 3
+  blobPrefab: {fileID: 2204486107432004656}
+  idleTime: 1
 --- !u!4 &7173138565946608182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7821054894090954687, guid: 9179e8fe0e96c8149a313be814c5ca58, type: 3}

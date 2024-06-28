@@ -15,6 +15,11 @@ public class Food : MonoBehaviour
             isHawk = true;
         owner.Add(blob);
     }
+
+    public void RemoveOwner(Blob blob)
+    {
+        owner.Remove(blob);
+    }
     
     public void TakeFood()
     {

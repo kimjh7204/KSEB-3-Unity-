@@ -6,6 +6,8 @@ using UnityEngine.PlayerLoop;
 
 public abstract class Blob : MonoBehaviour
 {
+    public GameObject blobPrefab;
+    
     protected FSMstate idleState;
     protected FSMstate wanderingState;
     protected FSMstate TracingFoodState;
@@ -19,11 +21,17 @@ public abstract class Blob : MonoBehaviour
     protected NavMeshAgent agent;
 
     protected Food targetFood;
+
+    protected int hp = 20;
+    protected const int MaxHp = 40;
+
+    private WaitForSeconds energyUseRate = new WaitForSeconds(2f);
     
     private void Awake()
     {
         StateInit();
         agent = GetComponent<NavMeshAgent>();
+        StartCoroutine(UsingEnergy());
     }
 
     private void Update()
@@ -47,5 +55,27 @@ public abstract class Blob : MonoBehaviour
     public void ResetFood()
     {
         targetFood = null;
+    }
+
+    private IEnumerator UsingEnergy()
+    {
+        while (hp > 0)
+        {
+            yield return energyUseRate; // 2sec
+            hp--;
+
+            if (hp <= 0)
+            {
+                if(!targetFood.IsDestroyed())
+                    targetFood.RemoveOwner(this);
+                Destroy(gameObject);
+            }
+
+            if (hp >= MaxHp)
+            {
+                Instantiate(blobPrefab, transform.position, Quaternion.identity);
+                hp -= 20;
+            }
+        }
     }
 }

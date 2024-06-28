@@ -11,9 +11,12 @@ public class SimulationManager : MonoBehaviour
     public float foodRate;
 
     private float foodTimer;
-    public float mapSize = 23f;
+    public float mapSize = 21f;
 
     private WaitForSeconds foodTime;
+
+    [Range(0.5f, 5f)]
+    public float timeMult = 1f;
     
     void Awake()
     {
@@ -21,6 +24,11 @@ public class SimulationManager : MonoBehaviour
         foodTime = new WaitForSeconds(foodRate);
         
         StartCoroutine(SpawningFood());
+    }
+
+    private void Update()
+    {
+        Time.timeScale = timeMult;
     }
     
     private IEnumerator SpawningFood()
