@@ -247,7 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodPrefab: {fileID: 8735395118819218946, guid: b525f06fff83ed84bbebe2ed740f0843, type: 3}
   foodRate: 1
-  mapSize: 25
+  mapSize: 23
+  timeMult: 1
 --- !u!4 &1744578717
 Transform:
   m_ObjectHideFlags: 0
@@ -538,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173138565946608182, guid: abc189eea8792134ab4f44e24494f539, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8004613
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 7173138565946608182, guid: abc189eea8792134ab4f44e24494f539, type: 3}
       propertyPath: m_LocalPosition.y
@@ -546,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173138565946608182, guid: abc189eea8792134ab4f44e24494f539, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.22536
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 7173138565946608182, guid: abc189eea8792134ab4f44e24494f539, type: 3}
       propertyPath: m_LocalRotation.w

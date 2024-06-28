@@ -11,7 +11,9 @@ public class SimulationManager : MonoBehaviour
     public float foodRate;
 
     private float foodTimer;
-    public float mapSize = 21f;
+    
+    [HideInInspector]
+    public float mapSize = 23f;
 
     private WaitForSeconds foodTime;
 

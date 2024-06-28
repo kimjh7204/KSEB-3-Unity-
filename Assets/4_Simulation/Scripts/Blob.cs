@@ -24,7 +24,16 @@ public abstract class Blob : MonoBehaviour
 
     protected int hp = 20;
     protected const int MaxHp = 40;
+    
+    public float idleTime = 1f;
+    protected float idleTimer;
 
+    protected float eatingTimer;
+    protected float eatingRate = 1f;
+
+    protected Vector3 WanderingPos;
+    
+    
     private WaitForSeconds energyUseRate = new WaitForSeconds(2f);
     
     private void Awake()
@@ -66,7 +75,7 @@ public abstract class Blob : MonoBehaviour
 
             if (hp <= 0)
             {
-                if(!targetFood.IsDestroyed())
+                if(targetFood != null && targetFood.IsDestroyed())
                     targetFood.RemoveOwner(this);
                 Destroy(gameObject);
             }

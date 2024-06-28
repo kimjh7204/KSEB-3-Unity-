@@ -32,10 +32,25 @@ public class Food : MonoBehaviour
         }
     }
 
-    public bool IsHawkEating()
-    {
-        return isHawk;
-    }
-
+    public bool IsHawkEating() => isHawk;
     public bool IsDestroyed() => isDestroyed;
+
+    public bool CheckEnemy()
+    {
+        if (isHawk)
+        {
+            isDestroyed = true;
+            Destroy(gameObject);
+            return false;
+        }
+        else
+        {
+            foreach (Dove dove in owner)
+            {
+                dove.SetKicked();
+            }
+
+            return true;
+        }
+    }
 }
