@@ -53,7 +53,7 @@ public class SimulationManager : MonoBehaviour
         Time.timeScale = timeMultSlider.value;
 
         var tempSize = scoreBar.sizeDelta;
-        tempSize.y = scoreBarSize * doveCount / (doveCount + hawkCount);
+        tempSize.y = scoreBarSize * doveCount / (doveCount + hawkCount + float.Epsilon);
         scoreBar.sizeDelta = tempSize;
     }
 
