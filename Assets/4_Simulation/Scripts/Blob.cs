@@ -72,12 +72,19 @@ public abstract class Blob : MonoBehaviour
             {
                 if(targetFood != null && targetFood.IsDestroyed())
                     targetFood.RemoveOwner(this);
+                
+                if (gameObject.CompareTag("Dove")) SimulationManager.instance.doveCount--;
+                if (gameObject.CompareTag("Hawk")) SimulationManager.instance.hawkCount--;
+                
                 Destroy(gameObject);
             }
 
             if (hp >= MaxHp)
             {
                 Instantiate(blobPrefab, transform.position, Quaternion.identity);
+                
+                if (blobPrefab.CompareTag("Dove")) SimulationManager.instance.doveCount++;
+                if (blobPrefab.CompareTag("Hawk")) SimulationManager.instance.hawkCount++;
                 hp -= 20;
             }
         }

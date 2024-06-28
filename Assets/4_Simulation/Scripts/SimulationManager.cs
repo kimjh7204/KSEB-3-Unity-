@@ -15,25 +15,30 @@ public class SimulationManager : MonoBehaviour
     public TextMeshProUGUI foodAmountText;
     private float foodTimer;
     private WaitForSeconds foodTime;
+    
     [Header("-Dove")]
     public GameObject DovePrefab;
     public int initialDoveAmount;
     public TextMeshProUGUI doveAmountText;
+    public int doveCount;
+    
     [Header("-Hawk")]
     public GameObject HawkPrefab;
     public int initialHawkAmount;
     public TextMeshProUGUI hawkAmountText;
-
+    public int hawkCount;
+    
     [Header("-ETC")]
     public GameObject controlPanel;
     
     [HideInInspector]
     public float mapSize = 23f;
     public Slider timeMultSlider;
-
-
-    public TextMeshProUGUI timeScaleText;
     
+    public TextMeshProUGUI timeScaleText;
+
+    public RectTransform scoreBar;
+    private const float scoreBarSize = 770f;
     
     void Awake()
     {
@@ -46,6 +51,10 @@ public class SimulationManager : MonoBehaviour
     private void Update()
     {
         Time.timeScale = timeMultSlider.value;
+
+        var tempSize = scoreBar.sizeDelta;
+        tempSize.y = scoreBarSize * doveCount / (doveCount + hawkCount);
+        scoreBar.sizeDelta = tempSize;
     }
 
     public void StartSimulation()
@@ -60,10 +69,12 @@ public class SimulationManager : MonoBehaviour
         for (int i = 0; i < initialDoveAmount; i++)
         {
             SpawnPrefabRandomPos(DovePrefab);
+            doveCount++;
         }
         for (int i = 0; i < initialHawkAmount; i++)
         {
             SpawnPrefabRandomPos(HawkPrefab);
+            hawkCount++;
         }
         
         controlPanel.SetActive(false);
