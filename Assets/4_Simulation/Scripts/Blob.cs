@@ -29,7 +29,7 @@ public abstract class Blob : MonoBehaviour
     protected float idleTimer;
 
     protected float eatingTimer;
-    protected float eatingRate = 1f;
+    protected float eatingRate = 0.2f;
 
     protected Vector3 WanderingPos;
     
@@ -60,11 +60,6 @@ public abstract class Blob : MonoBehaviour
 
     protected abstract void StateInit();
     protected abstract bool TransitionCheck();
-
-    public void ResetFood()
-    {
-        targetFood = null;
-    }
 
     private IEnumerator UsingEnergy()
     {

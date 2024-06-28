@@ -40,7 +40,7 @@ public class Hawk : Blob
         }
         else if (curState == TracingFoodState)
         {
-            if (targetFood.IsDestroyed() || targetFood.IsHawkEating())
+            if (targetFood.IsDestroyed())
             {
                 nextState = wanderingState;
                 return true;
