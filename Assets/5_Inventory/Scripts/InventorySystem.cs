@@ -17,10 +17,13 @@ public class InventorySystem : MonoBehaviour
             itemDB.Add(data.name, data);
         }
         
-        //SetItem 3번
+        foreach (var itemKey in itemDB.Keys)
+        {
+            SetItem(itemKey);
+        }
     }
 
-    public bool SetItem(ItemData data)
+    public bool SetItem(string itemKey)
     {
         Slot targetSlot = null;
         for (var i = 0; i < itemSlots.Length; i++)
@@ -28,14 +31,14 @@ public class InventorySystem : MonoBehaviour
             if (!itemSlots[i].isFilled)
             {
                 targetSlot = itemSlots[i];
+                break;
             }
         }
 
         if (targetSlot == null) return false;
-        
-        
 
+        targetSlot.SetItem(itemDB[itemKey]);
 
+        return true;
     }
-    
 }

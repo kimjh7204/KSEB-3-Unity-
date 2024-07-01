@@ -10,9 +10,14 @@ public class Slot : MonoBehaviour
     private bool _isFilled = false;
     public bool isFilled => _isFilled;
     
-    public void SetItem(/* Item data */)
+    public void SetItem(ItemData data)
     {
-        //itemImage.sprite = 
+        itemImage.sprite = data.itemImage;
+
+        var tempColor = itemImage.color;
+        tempColor.a = 1f;
+        itemImage.color = tempColor;
+         
         _isFilled = true;
     }
 }
