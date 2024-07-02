@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    public InventorySystem inventorySystem;
+    private ItemData itemData;
+    
     public Image itemImage;
 
     private bool _isFilled = false;
@@ -12,6 +15,8 @@ public class Slot : MonoBehaviour
     
     public void SetItem(ItemData data)
     {
+        itemData = data;
+        
         itemImage.sprite = data.itemImage;
 
         var tempColor = itemImage.color;
@@ -19,5 +24,12 @@ public class Slot : MonoBehaviour
         itemImage.color = tempColor;
          
         _isFilled = true;
+    }
+
+    public void MouseEnter()
+    {
+        if (itemData == null) return;
+        
+        inventorySystem.InitTooltip(itemData);
     }
 }
