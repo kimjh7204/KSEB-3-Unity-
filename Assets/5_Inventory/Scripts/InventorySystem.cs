@@ -76,6 +76,7 @@ public class InventorySystem : MonoBehaviour
     {
         icon = itemIcon;
         
+        
         icon.transform.SetParent(iconLayer);
         icon.GetComponent<Image>().raycastTarget = false;
         tooltipObj.SetActive(false);
