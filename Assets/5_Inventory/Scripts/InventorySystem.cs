@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class InventorySystem : MonoBehaviour
     public RectTransform tooltipTransform;
     public TextMeshProUGUI tooltipItemName;
     public TextMeshProUGUI tooltipItemDesc;
+
+    public RectTransform iconLayer;
+
+    private ItemIcon icon;
     
     void Start()
     {
@@ -56,5 +61,25 @@ public class InventorySystem : MonoBehaviour
         tooltipItemName.text = itemData.itemName;
         tooltipItemDesc.text = itemData.itemDesc;
     }
-    
+
+    public void ExitTooltip()
+    {
+        tooltipObj.SetActive(false);
+    }
+
+    public void TooltipMove(Vector2 pos)
+    {
+        tooltipTransform.anchoredPosition = pos;
+    }
+
+    public void InitDrag(ItemIcon itemIcon)
+    {
+        icon = itemIcon;
+        
+        icon.transform.SetParent(iconLayer);
+        icon.GetComponent<Image>().raycastTarget = false;
+        tooltipObj.SetActive(false);
+        
+        icon.SetPos();
+    }
 }
