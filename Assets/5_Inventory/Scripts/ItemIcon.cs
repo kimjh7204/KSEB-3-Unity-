@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerDownHandler, IPointerUpHandler
+public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerDownHandler
 {
     public Slot slot;
-    public Vector2 pos;
+    public Vector2 posOffset;
 
     private RectTransform rectTransform;
 
@@ -16,9 +17,9 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void SetPos()
+    public void SetPos(Vector2 pos)
     {
-        rectTransform.anchoredPosition = pos;
+        rectTransform.anchoredPosition = pos - posOffset;
     }
     
     public void OnPointerEnter(PointerEventData eventData)
@@ -39,11 +40,21 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         slot.MouseDown(this);
-        pos = eventData.position;
+        posOffset = eventData.position - rectTransform.anchoredPosition;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void Reset()
     {
-        throw new NotImplementedException();
+        transform.SetParent(slot.transform);
+        rectTransform.anchoredPosition = new Vector2(50f, 50f);
+        slot.Reset();
     }
+
+    public void BackToSlot()
+    {
+        transform.SetParent(slot.transform);
+        rectTransform.anchoredPosition = new Vector2(50f, 50f);
+        slot.BackToSlot();
+    }
+    
 }

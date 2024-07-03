@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
@@ -20,6 +22,12 @@ public class InventorySystem : MonoBehaviour
     public RectTransform iconLayer;
 
     private ItemIcon icon;
+
+    private bool isPointerInBG;
+    private bool isPointerInFrame;
+    
+    private Slot focusedSlot;
+    public Slot FocusedSlot => focusedSlot;
     
     void Start()
     {
@@ -32,6 +40,38 @@ public class InventorySystem : MonoBehaviour
         foreach (var itemKey in itemDB.Keys)
         {
             SetItem(itemKey);
+        }
+    }
+
+    private void Update()
+    {
+        if(icon == null) return;
+        
+        icon.SetPos(Input.mousePosition);
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (isPointerInBG)
+            {
+                icon.Reset();
+            }
+
+            if (isPointerInFrame)
+            {
+                if (focusedSlot != null)
+                {
+                    focusedSlot.SetItem(icon.slot.ItemData);
+                    icon.Reset();
+                }
+                else
+                {
+                    icon.BackToSlot();
+                }
+            }
+
+            
+            
+            icon = null;
         }
     }
 
@@ -76,11 +116,35 @@ public class InventorySystem : MonoBehaviour
     {
         icon = itemIcon;
         
-        
         icon.transform.SetParent(iconLayer);
         icon.GetComponent<Image>().raycastTarget = false;
         tooltipObj.SetActive(false);
         
-        icon.SetPos();
+        //icon.SetPos();
+    }
+    
+    public void OnBGEnter(BaseEventData eventData)
+    {
+        isPointerInBG = true;
+    }
+    
+    public void OnBGExit(BaseEventData eventData)
+    {
+        isPointerInBG = false;
+    }
+    
+    public void OnFrameEnter(BaseEventData eventData)
+    {
+        isPointerInFrame = true;
+    }
+    
+    public void OnFrameExit(BaseEventData eventData)
+    {
+        isPointerInFrame = false;
+    }
+
+    public void SetFocusedSlot(Slot slot)
+    {
+        focusedSlot = slot;
     }
 }
