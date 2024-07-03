@@ -60,16 +60,26 @@ public class InventorySystem : MonoBehaviour
             {
                 if (focusedSlot != null)
                 {
-                    focusedSlot.SetItem(icon.slot.ItemData);
-                    icon.Reset();
+                    //Sawp
+                    if (focusedSlot.isFilled)
+                    {
+                        icon.BackToSlot();
+                        
+                        var tempData = icon.slot.ItemData;
+                        icon.slot.SetItem(focusedSlot.ItemData);
+                        focusedSlot.SetItem(tempData);
+                    }
+                    else //move
+                    {
+                        focusedSlot.SetItem(icon.slot.ItemData);
+                        icon.Reset();
+                    }
                 }
                 else
                 {
                     icon.BackToSlot();
                 }
             }
-
-            
             
             icon = null;
         }
