@@ -226,6 +226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 345664868}
   - component: {fileID: 345664867}
+  - component: {fileID: 345664869}
+  - component: {fileID: 345664870}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -299,6 +301,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &345664869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345664865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5d6400df2e01349aa0e7d2ec5bac9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!81 &345664870
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345664865}
+  m_Enabled: 1
 --- !u!1 &1155761053
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,12 +351,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundResources:
-  - key: sfx_boom
+  - key: s1
     Clip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
-  - key: sfx_laser
+  - key: s2
     Clip: {fileID: 8300000, guid: ff5f85da24bc943d1abdc5760a22bc81, type: 3}
-  - key: sfx_foot
+  - key: s3
     Clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+  poolSize: 10
+  soundNodePrefab: {fileID: 5112814820021438343, guid: ad09ff11483e2724397ebef4641ea22c, type: 3}
 --- !u!4 &1155761055
 Transform:
   m_ObjectHideFlags: 0
