@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,7 @@ public class TestData : SaveData
         //?
     }
     
+    [Serializable]
     public class EnemyData
     {
         public Vector3 pos;
