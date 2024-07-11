@@ -5,8 +5,8 @@ using UnityEngine;
 
 public abstract class SaveData
 {
-    public string fileName;
-    public string directory;
+    private string fileName;
+    private string directory;
 
     public SaveData(string _fileName, string _directory)
     {

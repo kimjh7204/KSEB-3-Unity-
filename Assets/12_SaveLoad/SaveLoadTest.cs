@@ -14,7 +14,7 @@ public class SaveLoadTest : MonoBehaviour
 
     private GameObject[] enemyPrefabs;
 
-    private List<EnemyTemp> enemies = new List<EnemyTemp>();
+    private List<EnemyTemp> enemies = new ();
     
     private void Awake()
     {
@@ -71,7 +71,17 @@ public class SaveLoadTest : MonoBehaviour
 
         data.enemies = enemyData;
 
-        var json = JsonUtility.ToJson(data);
-        Debug.Log(json);
+        SaveLoadHelper.SaveData(data);
+    }
+
+    public void LoadData()
+    {
+        var data = SaveLoadHelper.LoadData<TestData>("GameData", "Test/Bootcamp");
+
+        stage.text = data.stage.ToString();
+        playerID.text = data.playerID.ToString();
+        player.transform.position = data.playerPos;
+        
+        
     }
 }
