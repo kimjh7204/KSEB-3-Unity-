@@ -82,6 +82,22 @@ public class SaveLoadTest : MonoBehaviour
         playerID.text = data.playerID.ToString();
         player.transform.position = data.playerPos;
         
+        foreach (var enemyTemp in enemies)
+        {
+            Destroy(enemyTemp.gameObject);
+        }
+        enemies.Clear();
         
+        for (int i = 0; i < data.enemies.Length; i++)
+        {
+            var enemyData = data.enemies[i];
+            
+            var enemyID = enemyData.id;
+            var pos = enemyData.pos;
+            var enemy = Instantiate(enemyPrefabs[enemyID], pos, Quaternion.identity).GetComponent<EnemyTemp>();
+            enemy.hp = enemyData.hp;
+            
+            enemies.Add(enemy);
+        }
     }
 }

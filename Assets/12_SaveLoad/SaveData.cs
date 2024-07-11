@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class SaveData
 {
@@ -27,7 +28,7 @@ public class TestData : SaveData
 
     public TestData(string _fileName, string _directory) : base(_fileName, _directory)
     {
-        //?
+        
     }
     
     [Serializable]
